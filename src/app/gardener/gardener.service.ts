@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class GardenerService {
-  private baseUrl = 'http://localhost:5678/webhook/gardener';
+  private baseUrl = 'http://localhost:5678/webhook/gardener/create';
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +15,8 @@ export class GardenerService {
   }
 
   createGardener(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/create`, data);
+    debugger;
+    return this.http.post(`${this.baseUrl}`, data);
   }
 
   updateGardener(id: string, data: any): Observable<any> {

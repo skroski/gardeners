@@ -89,6 +89,7 @@ export class GardenerFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    debugger;
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.isEditMode = true;
@@ -109,13 +110,13 @@ export class GardenerFormComponent implements OnInit {
         this.gardenerService
           .updateGardener(gardenerData.id, gardenerData)
           .subscribe(() => {
-            this.router.navigate(['/gardener']);
+            this.router.navigate(['/gardener/create']);
           });
       } else {
         // Criação: Remover o campo `id`
         const { id, ...newGardenerData } = gardenerData;
         this.gardenerService.createGardener(newGardenerData).subscribe(() => {
-          this.router.navigate(['/gardener']);
+          this.router.navigate(['/gardener/create']);
         });
       }
     }
