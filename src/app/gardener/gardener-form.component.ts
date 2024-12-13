@@ -89,7 +89,6 @@ export class GardenerFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger;
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.isEditMode = true;

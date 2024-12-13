@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Gardener } from './../models/gardener';
+import { Component, inject } from '@angular/core';
 import { GardenerService } from './gardener.service';
-
 @Component({
   selector: 'app-gardener-list',
   standalone: true,
@@ -24,9 +24,8 @@ import { GardenerService } from './gardener.service';
   styles: ``
 })
 export class GardenerListComponent {
-  gardeners: any[] = [];
-
-  constructor(private gardenerService: GardenerService) { }
+  gardeners: Gardener[] = [];
+  private gardenerService = inject(GardenerService);
 
   ngOnInit(): void {
     this.gardenerService.getGardeners().subscribe((data) => {

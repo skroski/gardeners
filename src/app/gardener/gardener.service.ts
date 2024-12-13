@@ -1,29 +1,32 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Gardener } from '../models/gardener';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GardenerService {
-  private baseUrl = 'http://localhost:5678/webhook/gardener/create';
+  private baseUrl = 'http://localhost:5678/webhook/gardener';
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) { }
-
-  getGardeners(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/getall`);
+  // Obter todos os jardineiros
+  getGardeners(): Observable<Gardener[]> {
+    return this.http.get<Gardener[]>(`${this.baseUrl}/getall`);
   }
 
+  // Criar um novo jardineiro
   createGardener(data: any): Observable<any> {
-    debugger;
-    return this.http.post(`${this.baseUrl}`, data);
+    return this.http.post<any>(`${this.baseUrl}/create`, data);
   }
 
-  updateGardener(id: string, data: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/update`, { id, ...data });
+  // Atualizar um jardineiro existente
+  updateGardener(id: string, data: Partial<Gardener>): Observable<Gardener> {
+    return this.http.put<Gardener>(`${this.baseUrl}/update`, { ...data, id });
   }
 
-  deleteGardener(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/delete?id=${id}`);
+  // Remover um jardineiro
+  deleteGardener(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/delete?id=${id}`);
   }
 }

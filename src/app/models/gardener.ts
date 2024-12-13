@@ -1,9 +1,12 @@
 // gardener.model.ts
 export interface Gardener {
-    id: string;
+    id?: string;
     name: string;
-    age: number;
-    experience: number;
-    // Adicione outros campos conforme necessário
+    specialties: string;
+    contact: string;
+    region: string;
+    availability: string;
+    rating?: number;
+
 
 }
