@@ -10,11 +10,12 @@ import { GardenerService } from './gardener.service';
 <ul>
   @for (gardener of gardeners ; track gardener.id) {
      <li>
-      <h2>{{ gardener.name }}</h2>
+      <h2 class="text-2xl text-red-500">{{ gardener.name }}</h2>
       <h3>{{ gardener.region }}</h3>
       <p>{{ gardener.contact }}</p>
       <p>{{ gardener.specialties }}</p>
       <p>{{ gardener.availability }}</p>
+      <button class="btn btn-primary">Button</button>
   </li>
   }
  
