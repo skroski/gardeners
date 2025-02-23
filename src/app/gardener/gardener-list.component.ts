@@ -2,9 +2,8 @@ import { Gardener } from './../models/gardener';
 import { Component, inject } from '@angular/core';
 import { GardenerService } from './gardener.service';
 @Component({
-  selector: 'app-gardener-list',
+  selector: 'app-gardener-slist',
   standalone: true,
-  imports: [],
   template: `
    <h1 class="text-3xl text-red-200">Lista de Jardineiros</h1>
 <ul>
@@ -15,7 +14,7 @@ import { GardenerService } from './gardener.service';
       <p>{{ gardener.contact }}</p>
       <p>{{ gardener.specialties }}</p>
       <p>{{ gardener.availability }}</p>
-      <button class="btn btn-primary">Button</button>
+      <button class="btn btn-primary" (click)="removeGardener(gardener.id)">Remover Jardineiro</button>
   </li>
   }
  
@@ -32,5 +31,8 @@ export class GardenerListComponent {
     this.gardenerService.getGardeners().subscribe((data) => {
       this.gardeners = data;
     });
+  }
+  removeGardener(id: any) {
+    this.gardenerService.deleteGardener(id)
   }
 }

@@ -61,7 +61,7 @@ import { GardenerService } from './gardener.service';
   </form>
 </div>
   
-  `,
+  `
 })
 export class GardenerFormComponent implements OnInit {
   gardenerForm: FormGroup;

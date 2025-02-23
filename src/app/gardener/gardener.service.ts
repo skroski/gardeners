@@ -7,7 +7,8 @@ import { Gardener } from '../models/gardener';
   providedIn: 'root',
 })
 export class GardenerService {
-  private baseUrl = 'http://localhost:5678/webhook/gardener';
+  private baseUrl = 'https://n8n.duplod.com.br/webhook/gardener';
+  private baseUrlWebHook = 'https://webhook.duplod.com.br/webhook/gardener';
   private http = inject(HttpClient);
 
   // Obter todos os jardineiros
@@ -17,16 +18,18 @@ export class GardenerService {
 
   // Criar um novo jardineiro
   createGardener(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/create`, data);
+    return this.http.post<any>(`${this.baseUrlWebHook}/create`, data);
   }
-
+  //https://webhook.duplod.com.br/webhook/gardener/create
   // Atualizar um jardineiro existente
   updateGardener(id: string, data: Partial<Gardener>): Observable<Gardener> {
     return this.http.put<Gardener>(`${this.baseUrl}/update`, { ...data, id });
   }
 
   // Remover um jardineiro
-  deleteGardener(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/delete?id=${id}`);
+  deleteGardener(id: any): Observable<void> {
+    debugger;
+    console.log(`${this.baseUrlWebHook}/delete?id=${id}`);
+    return this.http.delete<void>(`${this.baseUrlWebHook}/delete/=${id}`);
   }
 }
